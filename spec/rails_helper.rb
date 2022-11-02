@@ -60,6 +60,20 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  config.hook_into :webmock
+  config.filter_sensitive_data('location_key') { ENV['map_quest_key'] }
+  config.filter_sensitive_data('weather_key') { ENV['open_weather_key'] }
+  config.default_cassette_options = { re_record_interval: 7.days }
+  config.configure_rspec_metadata!
+  # config.default_cassette_options = {
+  #   :match_requests_on => [:method,
+  #     VCR.request_matchers.uri_without_param(:url)]
+  # }
+  config.default_cassette_options = {
+    :match_requests_on => [:method, :host, :path]
+  }
 end
 
 Shoulda::Matchers.configure do |config|
