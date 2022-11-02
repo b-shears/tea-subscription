@@ -1,7 +1,7 @@
-class Customer < ApplicationRecord 
-    validates_presence_of :title,
-                          :description,
-                          :temperature,
-                          :brew_time, 
-
-end 
+# class Customer < ApplicationRecord 
+#     validates_presence_of :first_name,
+#                           :last_name,
+#                           :email,
+#                           :address
+#     has_many :subscriptions
+# end 
