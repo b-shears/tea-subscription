@@ -1,9 +1,8 @@
-# class Subscription < ApplicationRecord 
-#      validates_presence_of :title,
-#                           :price,
-#                           :status,
-#                           :frequency
-                          
-#     belongs_to :teas 
-#     belongs_to :subscriptions
-# end 
+class Subscription < ApplicationRecord
+  validates_presence_of :title 
+  validates_presence_of :price 
+  validates_presence_of :status 
+  validates_presence_of :frequency 
+  belongs_to :tea 
+  belongs_to :customer
+end
