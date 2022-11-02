@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_02_172352) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_180711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.integer "temperature"
-    t.string "brew_time"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,10 +37,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_172352) do
   end
 
   create_table "teas", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "address"
+    t.string "title"
+    t.string "description"
+    t.integer "temperature"
+    t.string "brew_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
