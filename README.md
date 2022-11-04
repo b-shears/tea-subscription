@@ -1,7 +1,11 @@
 # Tea Subscription API
 
-#Table of Contents
-* [Local Setup](https://github.com/tea-subscription/blob/main/README.md#about)
+# Table of Contents
+* [About](https://github.com/tea-subscription/blob/main/README.md#about)
+* [Local Setup](https://github.com/tea-subscription/blob/main/README.md#local-setup)
+* [End Points](https://github.com/tea-subscription/blob/main/README.md#end-points)
+* [Schema](https://github.com/tea-subscription/blob/main/README.md#schema)
+
 ## About 
 Tea subscription is a simple Restful API, built in Ruby on Rails, that has three end points that allow customers to subscribe to a tea subscription, cancel a subscription, and see all of a customer's tea subscriptions. 
 
