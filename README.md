@@ -19,10 +19,10 @@ This project requires:
 
 ## Endpoints 
 ### Create a new subscription for a customer 
-*POST `/api/v1/subscriptions`
+* POST `/api/v1/subscriptions`
 A successful request creates a new subscription in the database, and returns a 201 response when the subscription is created. 
 
-*Example Response: 
+* Example Response: 
 ``` 
   {
       "data": {
