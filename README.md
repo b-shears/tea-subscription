@@ -113,7 +113,8 @@ A successful request list all of a customers subscriptions, a 200 response shoul
    
 ```
 
-###Schema 
+### Schema 
+
 ![Screen Shot 2022-11-04 at 10 02 59 AM](https://user-images.githubusercontent.com/101689311/200021964-3984815d-d741-4543-87b4-c338e0d3da5d.png)
 
 
