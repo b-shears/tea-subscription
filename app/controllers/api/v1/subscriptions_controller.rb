@@ -12,6 +12,16 @@ class Api::V1::SubscriptionsController < ApplicationController
         end 
     end 
 
+    def update 
+         subscription = Subscription.find(params[:subscription_id])
+         
+         if subscription.update(subscription_params)
+            render json: SubscriptionsSerializer.new(subscription)
+         else 
+            render status: 404
+         end 
+    end 
+
     private 
 
     def subscription_params 

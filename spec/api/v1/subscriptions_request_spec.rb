@@ -40,17 +40,38 @@ RSpec.describe "Subscriptions API" do
         expect(subscriptions[:data].first[:attributes]).to_not have_key(:updated_at)
     end 
 
-    xit 'can change the customers subscription status from active to cancelled' do 
+    it 'can change the customers subscription status from active to cancelled' do 
         customer = create(:customer)
-        customer_2 = create(:customer)
         tea = create(:tea)
-        create_list(:subscription, 3, customer_id: customer.id, tea_id: tea.id)
-        create_list(:subscription, 4, customer_id: customer_2.id, tea_id: tea.id)
-
-        # patch "/api/v1/customer/#{customer.id}/subscriptions"
+        subscription = create(:subscription, customer_id: customer.id, tea_id: tea.id)
+        
+        expect(subscription.status).to eq("Active")
+        
+        patch "/api/v1/subscriptions", params: { subscription_id: subscription.id, status: "Canceled" }
 
         subscriptions = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(response).to be_successful
+        expect(subscriptions).to be_a(Hash)
 
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+        expect(response.status).to_not eq(404)
+        
+        expect(subscriptions[:data]).to have_key(:id)
+        expect(subscriptions[:data][:id]).to be_a(String)
+        expect(subscriptions[:data][:attributes]).to have_key(:title)
+        expect(subscriptions[:data][:attributes][:title]).to be_a(String)
+        expect(subscriptions[:data][:attributes]).to have_key(:price)
+        expect(subscriptions[:data][:attributes][:price]).to be_a(Float)
+        expect(subscriptions[:data][:attributes]).to have_key(:status)
+        expect(subscriptions[:data][:attributes][:status]).to eq("Canceled")
+        expect(subscriptions[:data][:attributes]).to have_key(:frequency)
+        expect(subscriptions[:data][:attributes][:frequency]).to be_a(String)
+        expect(subscriptions[:data][:attributes]).to have_key(:tea_id)
+        expect(subscriptions[:data][:attributes][:tea_id]).to be_a(Integer)
+        expect(subscriptions[:data][:attributes]).to have_key(:customer_id)
+        expect(subscriptions[:data][:attributes][:customer_id]).to be_a(Integer)
     end 
 
     it 'can create a new tea subscription for an existing customer' do 
@@ -66,7 +87,7 @@ RSpec.describe "Subscriptions API" do
                                 customer_id: customer.id
                               }
 
-        post '/api/v1/subscriptions', params: subscription_params
+        post "/api/v1/subscriptions", params: subscription_params
         
         new_subscription = JSON.parse(response.body, symbolize_names: true)
 
